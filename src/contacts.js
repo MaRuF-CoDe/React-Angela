@@ -1,5 +1,6 @@
 const contacts = [
   {
+    id: 1,
     name: "Beyonce",
     imgURL:
       "https://blackhistorywall.files.wordpress.com/2010/02/picture-device-independent-bitmap-119.jpg",
@@ -7,6 +8,7 @@ const contacts = [
     email: "b@beyonce.com"
   },
   {
+    id: 2,
     name: "Jack Bauer",
     imgURL:
       "https://pbs.twimg.com/profile_images/625247595825246208/X3XLea04_400x400.jpg",
@@ -14,6 +16,7 @@ const contacts = [
     email: "jack@nowhere.com"
   },
   {
+    id: 3,
     name: "Chuck Norris",
     imgURL:
       "https://test-storage-mumbai.s3.amazonaws.com/uploads/image/file/11903/30_Beautiful_Indian_Girl.jpg",

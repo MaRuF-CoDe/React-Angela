@@ -1,17 +1,40 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import cars from "./practice";
 
-//Challenge:
-//1. Given that you can get the current time using:
+const [honda, tesla] = cars;
 
-//Show the latest time in the <h1> when the Get Time button
-//is pressed.
+const {
+  speedStats: { topSpeed: hondaTopSpeed }
+} = honda;
+const {
+  coloursByPopularity: [hondaTopColour]
+} = honda;
+const {
+  speedStats: { topSpeed: teslaTopSpeed }
+} = tesla;
+const {
+  coloursByPopularity: [teslaTopColour]
+} = tesla;
 
-//2. Given that you can get code to be called every second
-//using the setInterval method.
-//Can you get the time in your <h1> to update every second?
-
-//e.g. uncomment the code below to see Hey printed every second.
+ReactDOM.render(
+  <table>
+    <tr>
+      <th>Brand</th>
+      <th>Top Speed</th>
+      <th>Top Colour</th>
+    </tr>
+    <tr>
+      <td>{tesla.model}</td>
+      <td>{teslaTopSpeed}</td>
+      <td>{teslaTopColour}</td>
+    </tr>
+    <tr>
+      <td>{honda.model}</td>
+      <td>{hondaTopSpeed}</td>
+      <td>{hondaTopColour}</td>
+    </tr>
+  </table>,
+  document.getElementById("root")
+);

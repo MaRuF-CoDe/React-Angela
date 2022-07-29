@@ -1,49 +1,36 @@
 import React, { useState } from "react";
 
 function App() {
-  const [contact, setContact] = useState({
-    fName: "",
-    lName: "",
-    email: ""
-  });
-  function handleChange(event) {
-    const { value, name } = event.target;
-
-    setContact((prevValue) => {
-      return {
-        ...prevValue,
-        [name]: value
-      };
-    });
+  const [item, setItem] = useState("");
+  const [itemss, addItem] = useState([]);
+  function handleItem(event) {
+    const items = event.target.value;
+    setItem(items);
   }
-
+  function addedItem() {
+    addItem((prevValue) => {
+      return [...prevValue, item];
+    });
+    setItem("");
+  }
   return (
     <div className="container">
-      <h1>
-        Hello {contact.fName} {contact.lName}
-      </h1>
-      <p>{contact.email}</p>
-      <form>
-        <input
-          name="fName"
-          onChange={handleChange}
-          placeholder="First Name"
-          value={contact.fName}
-        />
-        <input
-          name="lName"
-          onChange={handleChange}
-          placeholder="Last Name"
-          value={contact.lName}
-        />
-        <input
-          name="email"
-          onChange={handleChange}
-          placeholder="Email"
-          value={contact.email}
-        />
-        <button>Submit</button>
-      </form>
+      <div className="heading">
+        <h1>To-Do List</h1>
+      </div>
+      <div className="form">
+        <input onChange={handleItem} type="text" value={item} />
+        <button onClick={addedItem}>
+          <span>Add</span>
+        </button>
+      </div>
+      <div>
+        <ul>
+          {itemss.map((item) => {
+            return <li>{item}</li>;
+          })}
+        </ul>
+      </div>
     </div>
   );
 }

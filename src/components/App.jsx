@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 
 function App() {
-  const [fullName, changeName] = useState({
+  const [fullName, setFullName] = useState({
     fName: "",
     lName: ""
   });
+
   function handleChange(event) {
     const { value, name } = event.target;
 
-    changeName((prevValue) => {
+    setFullName((prevValue) => {
       if (name === "fName") {
         return {
           fName: value,
@@ -22,6 +23,7 @@ function App() {
       }
     });
   }
+
   return (
     <div className="container">
       <h1>
@@ -36,7 +38,7 @@ function App() {
         />
         <input
           name="lName"
-          onchange={handleChange}
+          onChange={handleChange}
           placeholder="Last Name"
           value={fullName.lName}
         />

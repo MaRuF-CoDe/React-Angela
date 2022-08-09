@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import TodoList from "./TodoList";
-
+import InputArea from "./InputArea";
 function App() {
-  const [item, setItem] = useState("");
   const [itemss, addItem] = useState([]);
-  function handleItem(event) {
-    const items = event.target.value;
-    setItem(items);
-  }
-  function addedItem() {
-    addItem((prevValue) => {
-      return [...prevValue, item];
+
+  function addedItem(item) {
+    addItem((prevItems) => {
+      return [...prevItems, item];
     });
-    setItem("");
   }
+
   function changeItem(id) {
     addItem((prevItems) => {
       return prevItems.filter((item, index) => {
@@ -26,12 +22,7 @@ function App() {
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <input onChange={handleItem} type="text" value={item} />
-        <button onClick={addedItem}>
-          <span>Add</span>
-        </button>
-      </div>
+      <InputArea onAdd={addedItem} />
       <div>
         <ul>
           {itemss.map((item, index) => (

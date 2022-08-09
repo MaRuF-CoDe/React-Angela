@@ -1,40 +1,39 @@
 import React, { useState } from "react";
-import TodoList from "./TodoList";
-import InputArea from "./InputArea";
-function App() {
-  const [itemss, addItem] = useState([]);
+import Header from "./Header";
+import Footer from "./Footer";
+import Note from "./Note";
+import CreateArea from "./CreateArea";
 
-  function addedItem(item) {
-    addItem((prevItems) => {
-      return [...prevItems, item];
+function App() {
+  const [notes, setNotes] = useState([]);
+  function addNote(newNote) {
+    setNotes((prevNotes) => {
+      return [...prevNotes, newNote];
     });
   }
-
-  function changeItem(id) {
-    addItem((prevItems) => {
-      return prevItems.filter((item, index) => {
+  function deleteNote(id) {
+    setNotes((prevNotes) => {
+      prevNotes.filter((Item, index) => {
         return index !== id;
       });
     });
   }
   return (
-    <div className="container">
-      <div className="heading">
-        <h1>To-Do List</h1>
-      </div>
-      <InputArea onAdd={addedItem} />
-      <div>
-        <ul>
-          {itemss.map((item, index) => (
-            <TodoList
-              text={item}
-              onChange={changeItem}
-              key={index}
-              id={index}
-            />
-          ))}
-        </ul>
-      </div>
+    <div>
+      <Header />
+      <CreateArea onAdd={addNote} />
+      {notes.map((noteItem, index) => {
+        return (
+          <Note
+            key={index}
+            id={index}
+            title={noteItem.title}
+            content={noteItem.content}
+            onDelete={deleteNote}
+          />
+        );
+      })}
+      <Footer />
     </div>
   );
 }
